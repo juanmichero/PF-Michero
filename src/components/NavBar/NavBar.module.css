@@ -10,8 +10,11 @@
 }
 
 .button {
-    background-color: rgb(35, 206, 107);
-    border: 2px solid black;
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 15px;
 }
 
 .buttons {

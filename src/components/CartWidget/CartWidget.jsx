@@ -1,14 +1,14 @@
 import cart from './assets/shopping-cart.svg'
+import classes from './CartWidget.module.css'
 
 const CartWidget = () => {
 
     return (
-        <div className="m-3">
-            <img src={cart} alt="cart"/>
-            0
+        <div className={classes.widget}>
+            <img className={classes.cart} src={cart} alt="cart"/>
+            <p className="fs-3">0</p>
         </div>
     )
-
 }
 
 export default CartWidget

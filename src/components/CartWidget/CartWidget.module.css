@@ -1,0 +1,10 @@
+.cart {
+    width: 45px;
+}
+
+.widget {
+    margin-left: 30px;
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-start;
+}
