@@ -1,11 +1,24 @@
-import classes from './ItemListContainer.module.css'
+import { useEffect, useState } from 'react'
+import { getProducts } from '../../asyncMock'
+import ItemList from '../ItemList/ItemList'
 
-const ItemListContainer = (props) => {
+const ItemListContainer = ({ greeting }) => {
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        getProducts()
+            .then(response => {
+                setProducts(response)
+            })
+            // .catch(error => {
+            //     console.error(error);
+            // })
+    }, [])
 
     return (
         <div className="d-flex flex-column align-items-center">
-            <h1 className={classes.h1}>{props.name}</h1>
-            <img src={props.img} className={classes.img}/>
+            <h1 className="font-monospace fw-semibold">{greeting}</h1>
+            <ItemList products={products} />
         </div>
     )
 }

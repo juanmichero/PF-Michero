@@ -1,0 +1,28 @@
+.button {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border-radius: 8px;
+    background-color: rgb(184, 197, 214);
+    border: 2px solid #000;
+    color: #000;
+    width: 35px;
+    height: 35px;
+    font-weight: 600;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.h3 {
+    color: #000;
+}
+
+.addToCart {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgb(184, 197, 214);
+    border: 2px solid #000;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}

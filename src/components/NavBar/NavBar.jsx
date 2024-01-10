@@ -7,8 +7,8 @@ const NavBar = () => {
         <nav className={classes.nav}>
             <div className="d-flex align-items-center">
                 <h2 className="p-2 fs-1">Custom Keyboards</h2>
-                <CartWidget />
             </div>
+            <CartWidget />
             <section className="d-flex align-items-center">
                 <a href='#' className={classes.button}>Home</a>
                 <a href='#' className={classes.button}>Categories</a>
