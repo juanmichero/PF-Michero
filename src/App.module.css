@@ -1,0 +1,7 @@
+.error {
+    display: flex;
+    justify-content: center;
+    font-size: 100px;
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

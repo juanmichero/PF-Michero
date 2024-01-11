@@ -2,7 +2,7 @@ import Item from "../Item/Item"
 
 const ItemList = ({ products }) => {
     return (
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
         {
             products.map(prod => {
                 return (

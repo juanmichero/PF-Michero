@@ -1,19 +1,20 @@
 import classes from './NavBar.module.css'
 import CartWidget from '../CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
     
     return (
         <nav className={classes.nav}>
             <div className="d-flex align-items-center">
-                <h2 className="p-2 fs-1">Custom Keyboards</h2>
+                <Link to='/' className={classes.title}>Custom Keyboards</Link>
             </div>
             <CartWidget />
             <section className="d-flex align-items-center">
-                <a href='#' className={classes.button}>Home</a>
-                <a href='#' className={classes.button}>Categories</a>
-                <a href='#' className={classes.button}>About us</a>
-                <a href='#' className={classes.button}>Contact</a>
+                <Link to='/category/keyboard' className={classes.button}>Keyboards</Link>
+                <Link to='/category/keycaps' className={classes.button}>Keycaps</Link>
+                <Link to='/category/switches' className={classes.button}>Switches</Link>
+                <Link to='/category/other' className={classes.button}>Other</Link>
             </section>
         </nav>
     )
