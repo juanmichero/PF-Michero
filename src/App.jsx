@@ -16,9 +16,9 @@ function App() {
         <NavBar />
       <Routes>
         <Route path='/' element={<ItemListContainer greeting="Custom Mechanical Keyboard Store" />} />
-        <Route path='/category/:category' element={<ItemListContainer />} />
+        <Route path='/category/:category' element={<ItemListContainer greeting="" />} />
         <Route path='/product/:id' element={<ItemDetailContainer />} />
-        <Route path='*' element={<h1 className={classes.error}>ERROR</h1>}/>
+        <Route path='*' element={<h1 className={classes.error}>ERROR 404</h1>}/>
       </Routes>
       </BrowserRouter>
     </>

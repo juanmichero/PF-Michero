@@ -11,10 +11,10 @@ const NavBar = () => {
             </div>
             <CartWidget />
             <section className="d-flex align-items-center">
-                <Link to='/category/keyboard' className={classes.button}>Keyboards</Link>
-                <Link to='/category/keycaps' className={classes.button}>Keycaps</Link>
-                <Link to='/category/switches' className={classes.button}>Switches</Link>
-                <Link to='/category/other' className={classes.button}>Other</Link>
+                <Link to='/category/Keyboards' className={classes.button}>Keyboards</Link>
+                <Link to='/category/Keycaps' className={classes.button}>Keycaps</Link>
+                <Link to='/category/Switches' className={classes.button}>Switches</Link>
+                <Link to='/category/Other' className={classes.button}>Other</Link>
             </section>
         </nav>
     )
