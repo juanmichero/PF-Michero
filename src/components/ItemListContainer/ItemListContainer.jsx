@@ -41,7 +41,7 @@ const ItemListContainer = ({ greeting }) => {
 
     return (
         <div className="d-flex flex-column align-items-center">
-            <h1 className="font-monospace fw-semibold">{greeting + (category ?? '')}</h1>
+            <h1 className="font-monospace fw-semibold text-center">{greeting + (category ?? '')}</h1>
             <ItemList products={products} />
         </div>
     )

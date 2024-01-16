@@ -10,7 +10,7 @@ const NavBar = () => {
                 <Link to='/' className={classes.title}>Custom Keyboards</Link>
             </div>
             <CartWidget />
-            <section className="d-flex align-items-center">
+            <section className="d-flex align-items-center flex-wrap">
                 <Link to='/category/Keyboards' className={classes.button}>Keyboards</Link>
                 <Link to='/category/Keycaps' className={classes.button}>Keycaps</Link>
                 <Link to='/category/Switches' className={classes.button}>Switches</Link>

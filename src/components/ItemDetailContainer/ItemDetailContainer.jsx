@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { getProductById } from "../../asyncMock"
-import { useParams, Link } from "react-router-dom"
-// import classes from './ItemDetailContainer.module.css'
+import { useParams } from "react-router-dom"
 import ItemDetail from "../ItemDetail/ItemDetail"
 
 const ItemDetailContainer = () => {

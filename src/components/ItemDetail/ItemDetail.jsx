@@ -1,17 +1,7 @@
 import ItemCount from '../ItemCount/ItemCount'
 import classes from './ItemDetail.module.css'
 
-const ItemDetail = ({ id, name, img, price, description, stock }) => {
-    // const [quantity, setQuantity] = useState(0)
-
-    // const handleOnAdd = (quantity) => {
-    //     const objProductToAdd = {
-    //         id, name, price, quantity
-    //     }
-    //     console.log(objProductToAdd)
-
-    //     setQuantity(quantity)
-    // }
+const ItemDetail = ({ name, img, price, description, stock }) => {
 
     return (
         <div className={classes.card}>
