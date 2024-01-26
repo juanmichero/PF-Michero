@@ -22,8 +22,8 @@ const ItemDetail = ({ id, name, img, price, description, stock }) => {
         <div className={classes.card}>
                 <h1 className={classes.h1}>{name}</h1>
                 <img src={img} className={classes.img}/>
-                    <h3 className={classes.h3}>${price}</h3>
-                    <h4 className={classes.h4}>{description}</h4>
+                <h3 className={classes.h3}>${price}</h3>
+                <h4 className={classes.h4}>{description}</h4>
                     {
                         quantity === 0 ? (
                             <ItemCount stock={stock} onAdd={handleOnAdd}/>

@@ -1,0 +1,77 @@
+.div {
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    grid-template-rows: 1.1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "div1 div2"; 
+}
+
+@media (max-width: 950px) {
+    .div {
+        display: flex;
+        flex-direction: column;
+    }
+    .div2 {
+        margin-left: 2rem;
+    }
+}
+
+.div1 {
+    grid-area: div1;
+}
+
+.div2 {
+    margin-top: 2rem;
+    grid-area: div2;
+}
+
+.h1 {
+    font-size: 41px;
+    color: #000;
+    margin-top: 3rem;
+}
+
+.products {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 25px;
+    margin-top: 10rem;
+    border: 3px solid #000;
+    border-radius: 20px;
+    background-color: rgb(35, 206, 107);
+    box-shadow: 5px 3px 8px 4px rgb(204, 204, 204);
+    padding: 0.5rem;
+}
+
+.total {
+    color: #000;
+    font-size: 28px;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.clear {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgb(184, 197, 214);
+    border: 2px solid #000;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    padding: 0.3rem;
+    margin: 1rem;
+}
+
+.checkout {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgb(35, 206, 107);
+    border: 2px solid #000;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    padding: 0.3rem;
+    margin: 1rem;
+}

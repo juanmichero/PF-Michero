@@ -1,0 +1,39 @@
+.div {
+    margin: 2.5rem;
+    padding: 1rem;
+    background-color: rgb(35, 206, 107);
+    box-shadow: 5px 3px 8px 4px rgb(204, 204, 204);
+    border: 3px solid #000;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35rem;
+}
+
+@media (max-width: 650px) {
+    .div {
+        width: 86vw;
+        margin-right: 2rem;
+    }
+}
+
+.h1 {
+    color: #000;
+    font-style: italic;
+}
+
+.h3 {
+    color: #000;
+    font-size: 27px;
+}
+
+.remove {
+    background-color: rgb(184, 197, 214);
+    color: #000;
+    padding: 0.3rem;
+    font-size: 20px;
+    font-weight: 600;
+    border: 2px solid #000;
+    border-radius: 8px;
+}

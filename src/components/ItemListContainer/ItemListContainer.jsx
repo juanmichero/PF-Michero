@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getProducts, getProductsByCategory } from '../../asyncMock'
+// import { getProducts, getProductsByCategory } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
+import { db } from '../../services/firebase/firebaseConfig'
+import { getDocs, collection, query, where } from 'firebase/firestore'
+import Swal from 'sweetalert2'
 
 const ItemListContainer = ({ greeting }) => {
     const [loading, setLoading] = useState(true)
@@ -21,18 +24,43 @@ const ItemListContainer = ({ greeting }) => {
     useEffect(() => {
         setLoading(true)
 
-        const asyncFunction = category ? getProductsByCategory : getProducts
+        const productsCollection = category 
+        ? query(collection(db, 'products'), where('category', '==', category)) 
+        : collection(db, 'products') 
 
-        asyncFunction(category)
-            .then(response => {
-                setProducts(response)
+        getDocs(productsCollection)
+            .then(querySnapshot => {
+                const productsAdapted = querySnapshot.docs.map(doc => {
+                    const fields = doc.data()
+                    return { id: doc.id, ...fields }
+                })
+
+                setProducts(productsAdapted)
             })
             .catch(error => {
-                console.error(error);
+                Swal.fire({
+                    icon: "warning",
+                    title: `ERROR: ${error}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
             .finally(() => {
                 setLoading(false)
             })
+
+        // const asyncFunction = category ? getProductsByCategory : getProducts
+
+        // asyncFunction(category)
+        //     .then(response => {
+        //         setProducts(response)
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     })
+        //     .finally(() => {
+        //         setLoading(false)
+        //     })
     }, [category])
 
     if(loading) {
