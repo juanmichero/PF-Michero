@@ -10,7 +10,7 @@ const Cart = () => {
     if(totalQuantity === 0) {
         return (
             <div className="d-flex align-items-center flex-column">
-                <h1 className={classes.h1}>No items in cart</h1>
+                <h1 className={classes.h1}>No products in cart</h1>
                 <Link to='/' className={classes.products}>Products</Link>
             </div>
         )

@@ -38,10 +38,15 @@ export const CartProvider = ({ children }) => {
       return cart.some(prod => prod.id === id)
     }
   
-    // SWEET ALERT
     const removeItem = (id) => {
       const cartUpdated = cart.filter(prod => prod.id !== id)
       setCart(cartUpdated)
+      Swal.fire({
+        icon: "success",
+        title: `The product has been succesfully removed`,
+        showConfirmButton: false,
+        timer: 1500
+    })
     } 
 
     const getTotalQuantity = () => {
@@ -68,9 +73,27 @@ export const CartProvider = ({ children }) => {
 
     const total = getTotal()
 
-    // SWEET ALERT con confirm
     const clearCart = () => {
-        setCart([])
+        Swal.fire({
+          title: "Are you sure you want to remove all products from the cart?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#23ce6b",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Clear cart",
+          cancelButtonText: "Cancel"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setCart([])
+            Swal.fire({
+              title: "All products have been removed from the cart.",
+              text: "",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        })
     }
 
     return (
