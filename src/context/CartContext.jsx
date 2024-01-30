@@ -18,32 +18,38 @@ export const CartProvider = ({ children }) => {
     const addItem = (productToAdd) => {
       if(!isInCart(productToAdd.id)) {
         setCart(prev => [...prev, productToAdd])
-        Swal.fire({
-          icon: "success",
-          title: `${productToAdd.name} has been added to the cart`,
-          showConfirmButton: false,
-          timer: 1500
-      })
       } else {
-        Swal.fire({
-            icon: "warning",
-            title: `${productToAdd.name} is already in the cart`,
-            showConfirmButton: false,
-            timer: 1500
+        const cartUpdated = cart.map(prod => {
+          if(prod.id === productToAdd.id) {
+            return {
+              ...prod,
+              quantity: productToAdd.quantity
+            }
+          } else {
+            return prod
+          }
         })
+
+        setCart(cartUpdated)
       }
+      Swal.fire({
+        icon: "success",
+        title: `${productToAdd.quantity} units of ${productToAdd.name} have been added to the cart`,
+        showConfirmButton: false,
+        timer: 1500
+    })
     }
   
     const isInCart = (id) => {
       return cart.some(prod => prod.id === id)
     }
   
-    const removeItem = (id) => {
+    const removeItem = (id, name) => {
       const cartUpdated = cart.filter(prod => prod.id !== id)
       setCart(cartUpdated)
       Swal.fire({
         icon: "success",
-        title: `The product has been succesfully removed`,
+        title: `${name} has been succesfully removed from the cart`,
         showConfirmButton: false,
         timer: 1500
     })
@@ -74,6 +80,10 @@ export const CartProvider = ({ children }) => {
     const total = getTotal()
 
     const clearCart = () => {
+      setCart([])
+    } 
+
+    const clearCartWithValidation = () => {
         Swal.fire({
           title: "Are you sure you want to remove all products from the cart?",
           icon: "warning",
@@ -96,8 +106,13 @@ export const CartProvider = ({ children }) => {
         })
     }
 
+    const getProductQuantity = (productId) => {
+      const product = cart.find(prod => prod.id === productId)
+      return product?.quantity
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addItem, removeItem, totalQuantity, clearCart, total }}>
+        <CartContext.Provider value={{ cart, addItem, removeItem, totalQuantity, clearCart, clearCartWithValidation, total, getProductQuantity }}>
             { children }
         </CartContext.Provider>
     )

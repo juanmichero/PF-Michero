@@ -42,21 +42,10 @@ const ItemDetailContainer = () => {
             .finally(() => {
                 setLoading(false)
             })
-
-        // getProductById(id)
-        //     .then(response => {
-        //         setProduct(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })
     }, [id])
 
     if(loading) {
-        return <h1 className="d-flex justify-content-center mt-5">loading product...</h1>
+        return <h1 className="d-flex justify-content-center mt-5">Loading product...</h1>
     }
 
     if(!product) {

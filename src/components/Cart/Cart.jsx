@@ -5,7 +5,7 @@ import classes from './Cart.module.css'
 import CartItem from "../CartItem/CartItem"
 
 const Cart = () => {
-    const { cart, totalQuantity, clearCart, total } = useContext(CartContext)
+    const { cart, totalQuantity, clearCartWithValidation, total } = useContext(CartContext)
 
     if(totalQuantity === 0) {
         return (
@@ -24,7 +24,7 @@ const Cart = () => {
             <div className={classes.div2}>
                 <h3 className={classes.total}>Total: ${total}</h3>
                 <div className="d-flex mt-4">
-                    <button onClick={() => clearCart()} className={classes.clear}>Clear cart</button>
+                    <button onClick={() => clearCartWithValidation()} className={classes.clear}>Clear cart</button>
                     <Link to='/checkout' className={classes.checkout}>Checkout</Link>
                 </div>
             </div>

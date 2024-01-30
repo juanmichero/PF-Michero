@@ -6,7 +6,7 @@ const CartItem = ({ id, name, quantity, price, img }) => {
 
     const handleRemoveItem = (click) => {
         click.stopPropagation()
-        removeItem(id)
+        removeItem(id, name)
     }
 
     return (

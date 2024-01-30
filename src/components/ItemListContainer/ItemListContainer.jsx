@@ -48,23 +48,10 @@ const ItemListContainer = ({ greeting }) => {
             .finally(() => {
                 setLoading(false)
             })
-
-        // const asyncFunction = category ? getProductsByCategory : getProducts
-
-        // asyncFunction(category)
-        //     .then(response => {
-        //         setProducts(response)
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //     })
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })
     }, [category])
 
     if(loading) {
-        return <h1 className="d-flex justify-content-center mt-5">loading products...</h1>
+        return <h1 className="d-flex justify-content-center mt-5">Loading products...</h1>
     }
 
     return (

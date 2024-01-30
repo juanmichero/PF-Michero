@@ -1,9 +1,27 @@
 import classes from './NavBar.module.css'
 import CartWidget from '../CartWidget/CartWidget'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { collection, getDocs, query, orderBy } from 'firebase/firestore'
+import { db } from '../../services/firebase/firebaseConfig'
 
 const NavBar = () => {
-    
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        const categoriesCollection = query(collection(db, 'categories'), orderBy('order'))
+
+        getDocs(categoriesCollection)
+            .then(querySnapshot => {
+                const categoriesAdapted = querySnapshot.docs.map(doc => {
+                    const fields = doc.data()
+                    return { id: doc.id, ...fields}
+                })
+
+                setCategories(categoriesAdapted)
+            })
+    }, [])
+
     return (
         <nav className={classes.nav}>
             <div className="d-flex align-items-center">
@@ -11,10 +29,11 @@ const NavBar = () => {
             </div>
             <CartWidget />
             <section className="d-flex align-items-center flex-wrap">
-                <Link to='/category/Keyboards' className={classes.button}>Keyboards</Link>
-                <Link to='/category/Keycaps' className={classes.button}>Keycaps</Link>
-                <Link to='/category/Switches' className={classes.button}>Switches</Link>
-                <Link to='/category/Other' className={classes.button}>Other</Link>
+                {
+                    categories.map(cat => (
+                        <Link key={cat.id} to={`/category/${cat.name}`} className={classes.button}>{cat.name}</Link>
+                    ))
+                }
             </section>
         </nav>
     )
