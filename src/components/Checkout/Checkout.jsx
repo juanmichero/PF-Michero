@@ -1,18 +1,25 @@
-import { collection, getDocs, query, where, documentId, writeBatch, addDoc } from "firebase/firestore"
-import { useCart } from "../../context/CartContext"
-import { db } from "../../services/firebase/firebaseConfig"
-import Swal from "sweetalert2"
-import { useState } from "react"
-import classes from './Checkout.module.css'
 import OrderForm from "../OrderForm/OrderForm"
+import classes from './Checkout.module.css'
+import Swal from "sweetalert2"
+import { useCart } from "../../context/CartContext"
+import { collection, getDocs, query, where, documentId, writeBatch, addDoc } from "firebase/firestore"
+import { db } from "../../services/firebase/firebaseConfig"
+import { useState, useEffect } from "react"
+
+
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState(null)
     const { cart, total, clearCart } = useCart()
 
+    useEffect(() => {
+        document.title = 'Checkout'
+    })
+
     const createOrder = async (userData) => {
         setLoading(true)
+
         try {
             const objOrder = {
                 buyer: userData,
@@ -21,19 +28,24 @@ const Checkout = () => {
             }
     
             const batch = writeBatch(db)
+
             const outOfStock = []
     
             const ids = cart.map(prod => prod.id)
+
             const productsCollection = query(collection(db, 'products'), where(documentId(), 'in', ids))
     
             const querySnapshot = await getDocs(productsCollection)
+
             const { docs } = querySnapshot
             
             docs.forEach(doc => {
                 const fields = doc.data()
+
                 const stockDb = fields.stock
     
                 const productsInCart = cart.find(prod => prod.id === doc.id)
+
                 const prodQuantity = productsInCart.quantity
     
                 if(stockDb >= prodQuantity) {
@@ -47,6 +59,7 @@ const Checkout = () => {
                 batch.commit()
     
                 const orderCollection = collection(db, 'orders')
+
                 const { id } = await addDoc(orderCollection, objOrder)   
                 
                 setOrderId(id)
@@ -89,9 +102,7 @@ const Checkout = () => {
 
     return (
         <>
-            <OrderForm />
-            <h1>form (name, adress, email, phone)</h1>
-            <button onClick={createOrder} className={classes.button}>Place order</button>
+            <OrderForm onConfirm={createOrder} />
         </>
     )
 }

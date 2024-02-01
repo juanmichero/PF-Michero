@@ -1,5 +1,5 @@
-import { useCart } from "../../context/CartContext"
 import classes from './CartItem.module.css'
+import { useCart } from "../../context/CartContext"
 
 const CartItem = ({ id, name, quantity, price, img }) => {
     const { removeItem } = useCart()

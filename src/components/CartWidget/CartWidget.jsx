@@ -1,6 +1,6 @@
 import cartsvg from './assets/shopping-cart.svg'
-import { useCart } from '../../context/CartContext'
 import classes from './CartWidget.module.css'
+import { useCart } from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 
 const CartWidget = () => {

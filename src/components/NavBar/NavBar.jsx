@@ -1,7 +1,7 @@
-import classes from './NavBar.module.css'
 import CartWidget from '../CartWidget/CartWidget'
-import { Link } from 'react-router-dom'
+import classes from './NavBar.module.css'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { collection, getDocs, query, orderBy } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebaseConfig'
 

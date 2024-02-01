@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-// import { getProducts, getProductsByCategory } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
-import { useParams } from 'react-router-dom'
-import { db } from '../../services/firebase/firebaseConfig'
-import { getDocs, collection, query, where } from 'firebase/firestore'
 import Swal from 'sweetalert2'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { getDocs, collection, query, where, orderBy } from 'firebase/firestore'
+import { db } from '../../services/firebase/firebaseConfig'
+
 
 const ItemListContainer = ({ greeting }) => {
     const [loading, setLoading] = useState(true)
@@ -26,7 +26,7 @@ const ItemListContainer = ({ greeting }) => {
 
         const productsCollection = category 
         ? query(collection(db, 'products'), where('category', '==', category)) 
-        : collection(db, 'products') 
+        : query(collection(db, 'products'), orderBy('order')) 
 
         getDocs(productsCollection)
             .then(querySnapshot => {

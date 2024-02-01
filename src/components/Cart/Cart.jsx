@@ -1,11 +1,15 @@
-import { useContext } from "react"
-import { CartContext } from "../../context/CartContext"
-import { Link } from "react-router-dom"
-import classes from './Cart.module.css'
 import CartItem from "../CartItem/CartItem"
+import classes from './Cart.module.css'
+import { CartContext } from "../../context/CartContext"
+import { useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
     const { cart, totalQuantity, clearCartWithValidation, total } = useContext(CartContext)
+
+    useEffect(() => {
+        document.title = 'Cart'
+    })
 
     if(totalQuantity === 0) {
         return (
