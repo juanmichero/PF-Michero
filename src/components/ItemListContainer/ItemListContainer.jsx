@@ -1,16 +1,12 @@
 import ItemList from '../ItemList/ItemList'
 import Swal from 'sweetalert2'
+import { getProducts } from '../../services/firebase/firestore/products'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getDocs, collection, query, where, orderBy } from 'firebase/firestore'
-import { db } from '../../services/firebase/firebaseConfig'
+import { useAsync } from '../../hooks/useAsync'
 
 
 const ItemListContainer = ({ greeting }) => {
-    const [loading, setLoading] = useState(true)
-
-    const [products, setProducts] = useState([])
-
     const { category } = useParams()
 
     useEffect(() => {
@@ -19,39 +15,18 @@ const ItemListContainer = ({ greeting }) => {
         return () => {
             document.title = 'Custom Mechanical Keyboard Store'
         }
-    })
-
-    useEffect(() => {
-        setLoading(true)
-
-        const productsCollection = category 
-        ? query(collection(db, 'products'), where('category', '==', category)) 
-        : query(collection(db, 'products'), orderBy('order')) 
-
-        getDocs(productsCollection)
-            .then(querySnapshot => {
-                const productsAdapted = querySnapshot.docs.map(doc => {
-                    const fields = doc.data()
-                    return { id: doc.id, ...fields }
-                })
-
-                setProducts(productsAdapted)
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: "warning",
-                    title: `ERROR: ${error}`,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            })
-            .finally(() => {
-                setLoading(false)
-            })
     }, [category])
+
+    const asyncFunction = () => getProducts(category)
+
+    const { data: products, error, loading } = useAsync(asyncFunction, [category])
 
     if(loading) {
         return <h1 className="d-flex justify-content-center mt-5">Loading products...</h1>
+    }
+
+    if(error) {
+        return <h1>error</h1>
     }
 
     return (

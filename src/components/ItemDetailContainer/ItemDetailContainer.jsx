@@ -3,6 +3,7 @@ import { getDoc, doc } from "firebase/firestore"
 import { db } from "../../services/firebase/firebaseConfig"
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { createProductAdaptedFromFirestore } from "../../adapters/createProductAdapterFromFirestore"
 
 const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
@@ -26,8 +27,7 @@ const ItemDetailContainer = () => {
 
         getDoc(productDocument)
             .then(queryDocumentSnapshot => {
-                const fields = queryDocumentSnapshot.data()
-                const productAdapted = { id: queryDocumentSnapshot.id, ...fields }
+                const productAdapted = createProductAdaptedFromFirestore(queryDocumentSnapshot)
                 setProduct(productAdapted)
             })
             .catch(error => {

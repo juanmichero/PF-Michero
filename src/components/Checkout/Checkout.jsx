@@ -6,8 +6,6 @@ import { collection, getDocs, query, where, documentId, writeBatch, addDoc } fro
 import { db } from "../../services/firebase/firebaseConfig"
 import { useState, useEffect } from "react"
 
-
-
 const Checkout = () => {
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState(null)
