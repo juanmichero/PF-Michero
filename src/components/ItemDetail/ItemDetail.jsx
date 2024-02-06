@@ -10,7 +10,6 @@ const ItemDetail = ({ id, name, img, price, description, stock }) => {
             id, name, price, quantity
         }
         addItem(objProductToAdd)
-
     }
 
     const productQuantity = getProductQuantity(id)

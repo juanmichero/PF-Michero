@@ -1,7 +1,8 @@
 import classes from './CartItem.module.css'
-import { useCart } from "../../context/CartContext"
+import { useCart } from '../../context/CartContext'
+import { Link } from 'react-router-dom'
 
-const CartItem = ({ id, name, quantity, price, img }) => {
+const CartItem = ({ id, name, quantity, price }) => {
     const { removeItem } = useCart()
 
     const handleRemoveItem = (click) => {
@@ -12,11 +13,13 @@ const CartItem = ({ id, name, quantity, price, img }) => {
     return (
         <div className={classes.div}>
             <div>
-                <h1 className={classes.h1}>{name}</h1>
-                <h3 className={classes.h3}>${price} x{quantity}</h3>
+                <h1 className={classes.name}>{name}</h1>
+                <h3 className={classes.price}>${price} x{quantity}</h3>
             </div>
-            {/* <img src={img} className={classes.img}/> */}
-            <button className={classes.remove} onClick={handleRemoveItem}>Remove</button>
+            <div>
+                <Link to={`/product/${id}`} className={classes.details}>Details</Link>
+                <button className={classes.remove} onClick={handleRemoveItem}>Remove</button>
+            </div>
         </div>
     )
 }

@@ -81,8 +81,6 @@ const Checkout = () => {
         } finally {
             setLoading(false)
         }
-
-        
     }
 
     if(loading) {
@@ -96,7 +94,6 @@ const Checkout = () => {
             <h1 className={classes.orderid}>Your order ID is {orderId}. Thanks for your purchase!</h1>
         )
     }
-
 
     return (
         <>

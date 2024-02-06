@@ -1,19 +1,23 @@
-import CartItem from "../CartItem/CartItem"
+import CartItem from '../CartItem/CartItem'
 import classes from './Cart.module.css'
-import { CartContext } from "../../context/CartContext"
-import { useContext, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { CartContext } from '../../context/CartContext'
+import { useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
     const { cart, totalQuantity, clearCartWithValidation, total } = useContext(CartContext)
 
     useEffect(() => {
         document.title = 'Cart'
+
+        return () => {
+            document.title = 'Custom Mechanical Keyboard Store'
+        }
     })
 
     if(totalQuantity === 0) {
         return (
-            <div className="d-flex align-items-center flex-column">
+            <div className='d-flex align-items-center flex-column'>
                 <h1 className={classes.h1}>No products in cart</h1>
                 <Link to='/' className={classes.products}>Products</Link>
             </div>
@@ -27,7 +31,7 @@ const Cart = () => {
             </div>
             <div className={classes.div2}>
                 <h3 className={classes.total}>Total: ${total}</h3>
-                <div className="d-flex mt-4">
+                <div className='d-flex mt-4'>
                     <button onClick={() => clearCartWithValidation()} className={classes.clear}>Clear cart</button>
                     <Link to='/checkout' className={classes.checkout}>Checkout</Link>
                 </div>

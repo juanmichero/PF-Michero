@@ -5,7 +5,7 @@
     border: 2px solid #000;
 }
 
-.h1 {
+.name {
     margin-top: 1rem;
     margin-bottom: -0.2rem;
     font-size: 38px;
@@ -14,14 +14,14 @@
     font-style: italic;
 }
 
-.h3 {
+.price {
     margin-top: 0.25rem;
     margin-right: 2rem;
     font-style: italic;
     color: #000;
 }
 
-.button {
+.details {
     border-radius: 8px;
     background-color: rgb(184, 197, 214);
     border: 2px solid #000;
